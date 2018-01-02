@@ -1,4 +1,4 @@
-package shiro.test;
+package me.imniu.shiro.realm;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -9,19 +9,19 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.realm.Realm;
 
 /**
- * Description:自定义的单Realm 配置
+ * Description:自定义的多Realm 配置
  *
  * @author NiuJinpeng
  * @date   2018年1月2日下午2:47:31
  */
-public class MyRealm1 implements Realm{
+public class MyRealm3 implements Realm{
 
 	/**
 	 * 获取唯一的名字
 	 */
 	@Override
 	public String getName() {
-		return "myrealm1";
+		return "myrealm3";
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class MyRealm1 implements Realm{
 			throw new UnknownAccountException();
 		}
 		// 如果身份认证验证成功，返回一个AuthenticationInfo实现
-		return new SimpleAuthenticationInfo(username,password,getName());
+		return new SimpleAuthenticationInfo(username+"@163.com",password,getName());
 	}
 
 }

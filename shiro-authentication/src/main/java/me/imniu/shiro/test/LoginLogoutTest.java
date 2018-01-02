@@ -1,4 +1,4 @@
-package shiro.test;
+package me.imniu.shiro.test;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -98,6 +98,38 @@ public class LoginLogoutTest {
 		// 3.得到Subject以及创建用户名/密码身份验证Token（用户身份凭证）
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken("niu","123");
+		
+		try{
+			// 4.登录认证
+			subject.login(token);
+			// 5.输出状态
+			Assert.assertEquals(true,subject.isAuthenticated());
+			System.out.println(subject.isAuthenticated());
+		}catch (Exception e) {
+			System.out.println("出现异常："+e.getClass());
+		}
+		// 6.登出
+		subject.logout();
+		
+		// 7.输出状态
+		System.out.println(subject.isAuthenticated());
+	}
+	
+	/**
+	 * 身份认证测试，使用数据库
+	 */
+	@Test
+	public void testJDBCRealm(){
+		// 1.获取SecurityManager工厂，使用ini配置文件初始化SecurityManager
+		IniSecurityManagerFactory factory = new IniSecurityManagerFactory("classpath:shiro-jdbc-realm.ini");
+		
+		// 2.得到SecurityManager示例，并绑定给SecurityUtils
+		SecurityManager securityManager = factory.getInstance();
+		SecurityUtils.setSecurityManager(securityManager);
+		
+		// 3.得到Subject以及创建用户名/密码身份验证Token（用户身份凭证）
+		Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken("zhang","123");
 		
 		try{
 			// 4.登录认证
