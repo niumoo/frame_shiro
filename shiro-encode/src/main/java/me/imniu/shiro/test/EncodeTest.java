@@ -4,6 +4,7 @@ import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.apache.shiro.crypto.hash.Sha512Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.Test;
 
@@ -76,6 +77,18 @@ public class EncodeTest {
 		String sha1 = new Sha256Hash(str, salt).toString();
 		System.out.println(str+"进行SHA256:"+sha1);
 	}
+	
+	/**
+	 * SHA512 算法。
+	 */
+	@Test
+	public void testSHA512(){
+		String str = "c942f011ced5f36de066dd2d948538cb";
+		String salt = "123";
+		String sha1 = new Sha512Hash(str, salt).toString();
+		System.out.println(str+"进行SHA512:"+sha1);
+	}
+	
 	
 	/**
 	 * 通用的散列支持
