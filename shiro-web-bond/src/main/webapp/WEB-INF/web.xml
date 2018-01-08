@@ -31,7 +31,11 @@ SecurityManager及其相应的依赖。ShiroFilter会自动找到Environment然�
     </context-param>
     <context-param>
         <param-name>shiroConfigLocations</param-name>
-        <param-value>classpath:shiro.ini</param-value>
+        <!-- <param-value>classpath:shiro.ini</param-value> -->
+        <!-- 这里加载basic的配置文件，配置文件中在访问/role的时候使用basicauth的形式弹窗请求授权 -->
+        <!-- <param-value>classpath:shiro-basicfilterlogin.ini</param-value> -->
+        <!-- 这里使用基于表单的拦截器身份验证 -->
+        <param-value>classpath:shiro-formfilterlogin.ini</param-value>
     </context-param>
     <filter>
         <filter-name>shiroFilter</filter-name>
