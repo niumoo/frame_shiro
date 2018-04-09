@@ -119,8 +119,8 @@
         <property name="filterChainDefinitions">
             <value>
             	<!-- ssl的配置 -->
-                <!-- /login.jsp = ssl,authc -->
-                /login.jsp = authc
+                /login.jsp = ssl,authc
+                <!-- /login.jsp = authc -->
                 /logout = logout
                 /authenticated.jsp = authc
                 /** = user
